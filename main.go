@@ -4,11 +4,14 @@ import (
 	"crypto/md5"
 	"encoding/hex"
 	"fmt"
+	"log"
 	"os"
 	"os/exec"
+	"path/filepath"
 
 	yt "github.com/KeluDiao/gotube/api"
 	"github.com/goware/urlx"
+	"github.com/kkdai/youtube"
 	tgbotapi "gopkg.in/telegram-bot-api.v4"
 )
 
@@ -30,26 +33,33 @@ func main() {
 		os.Exit(1)
 	}
 
-	bot.Debug = false
-
 	fmt.Printf("authorized on account %s\n", bot.Self.UserName)
 
 	u := tgbotapi.NewUpdate(0)
 	u.Timeout = 60
 
-	updates, err := bot.GetUpdatesChan(u)
+	//updates, err := bot.GetUpdatesChan(u)
 
-	fmt.Println("listening for new messages...")
+	//fmt.Println("listening for new messages...")
 
-	for update := range updates {
-		if update.Message == nil {
-			continue
-		}
+	currentFile, _ := filepath.Abs("/tmp/test")
+	log.Println("download to file=", currentFile)
 
-		fmt.Printf("received message from %s\n", update.Message.From)
+	// NewYoutube(debug) if debug parameter will set true we can log of messages
+	y := youtube.NewYoutube(true)
+	y.DecodeURL("https://www.youtube.com/watch?v=fclmGZrnvzk")
+	y.StartDownload(currentFile)
 
-		go HandleVideo(update.Message.Chat.ID, update.Message.MessageID, repo, "medium", "video/mp4", update.Message.Text, bot)
-	}
+	/*
+		for update := range updates {
+			if update.Message == nil {
+				continue
+			}
+
+			fmt.Printf("received message from %s\n", update.Message.From)
+
+			go HandleVideo(update.Message.Chat.ID, update.Message.MessageID, repo, "medium", "video/mp4", update.Message.Text, bot)
+		}*/
 
 }
 
