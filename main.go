@@ -16,6 +16,7 @@ func main() {
 	fmt.Println("running tunebot")
 
 	repo := os.Getenv("YOUTUBE_CACHE_FOLDER")
+	fmt.Printf("repository setup %s\n", repo)
 
 	telegramToken := os.Getenv("TELEGRAM_TOKEN")
 	if telegramToken == "" {

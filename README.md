@@ -6,3 +6,4 @@ A bot for telegram that converts given youtube urls to mp3s
 
 # Configuration
 * `TELEGRAM_TOKEN`
+* `YOUTUBE_CACHE_FOLDER`
