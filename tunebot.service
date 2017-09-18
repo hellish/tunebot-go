@@ -5,8 +5,8 @@ After=network.target
 [Service]
 Type=simple
 User=root
-WorkingDirectory=/root/tunebot
-ExecStart=/root/tunebot/tunebot
+WorkingDirectory=/root/tunebot-go
+ExecStart=/root/tunebot-go/tunebot
 Restart=on-abort
 
 # These credentials will not work for you, you need to create your own
