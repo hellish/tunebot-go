@@ -12,6 +12,7 @@ Restart=on-abort
 # These credentials will not work for you, you need to create your own
 # at apps.twitter.com.
 Environment=TELEGRAM_TOKEN=xxx
+Environment=YOUTUBE_CACHE_FOLDER=xxx
 
 [Install]
 WantedBy=multi-user.target

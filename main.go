@@ -15,6 +15,8 @@ import (
 func main() {
 	fmt.Println("running tunebot")
 
+	repo := os.Getenv("YOUTUBE_CACHE_FOLDER")
+
 	telegramToken := os.Getenv("TELEGRAM_TOKEN")
 	if telegramToken == "" {
 		fmt.Print("telegram token is missing\n")
@@ -37,8 +39,6 @@ func main() {
 	updates, err := bot.GetUpdatesChan(u)
 
 	fmt.Println("listening for new messages...")
-
-	repo := "tunebot-repo"
 
 	for update := range updates {
 		if update.Message == nil {
