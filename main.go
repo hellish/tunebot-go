@@ -138,10 +138,10 @@ func ConvertAndServeVideo(cid int64, msgid int, repo string, filename string, qu
 
 	//convert to mp3 here
 	SendToBot(cid, msgid, "Converting video "+vl.Title+" to mp3", bot)
-	fmt.Printf("converting to %s\n", target)
+	fmt.Printf("converting from %s to %s\n", source, target)
 	cmd := exec.Command("ffmpeg", "-i", source, "-f", "mp3", target)
 	if _, err := cmd.CombinedOutput(); err != nil {
-		fmt.Printf("ffmpeg failed: %s", err)
+		fmt.Printf("ffmpeg failed: %v\n", err)
 		SendToBot(cid, msgid, "Error converting file "+vl.Title+" to mp3", bot)
 		DeleteDownloadedFile(source)
 		DeleteDownloadedFile(target)
