@@ -1,10 +1,6 @@
 build:
-	@echo "building tunebot"
-	go build -o tunebot
-
-build-static:
 	@echo "building static tunebot"
-	CGO_ENABLED=0 GOOS=linux go build -a -ldflags '-extldflags "-static"' .
+	CGO_ENABLED=0 GOOS=linux go build -a -ldflags '-s -w -extldflags "-static"' .
 
 clean:
 	@echo "cleaning"
